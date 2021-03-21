@@ -1,23 +1,21 @@
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
 
 public class Envelope {
 
     // Reads and updates resent history and transactions.
     public ArrayList<String> readHistory() throws IOException {
-        try (InputStream inputStream = Envelope.class.getResourceAsStream("/history.txt")) {
 
-            BufferedReader file = new BufferedReader(new InputStreamReader(inputStream));
-            for (; ; ) {
-                String line = file.readLine();
-                if (line == null) {
-                    break;
-                }
-                envelopesHistory.add(line);
+        BufferedReader file = new BufferedReader(new FileReader("src/main/resources/history.txt"));
+        for (; ; ) {
+            String line = file.readLine();
+            if (line == null) {
+                break;
             }
-            return envelopesHistory;
+            envelopesHistory.add(line);
         }
+        return envelopesHistory;
     }
 
 
@@ -64,5 +62,10 @@ public class Envelope {
         System.out.println("The latest transactions:");
         return envelopesHistory;
     }
+
+
+    //
+
+
 }
 
